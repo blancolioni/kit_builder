@@ -4,6 +4,7 @@ with Syn.File_Writer;
 with Syn.Projects;
 
 with Kit.Generate;
+with Kit.Generate.Templates;
 with Kit.Parser;
 with Kit.Schema.Databases;
 with Kit.Schema.Types;
@@ -36,6 +37,8 @@ package body Kit.Driver is
          Ada.Directories.Set_Directory
            (Kit.Command_Line.Output_Directory);
          Syn.Projects.Write_Project (Project, File);
+         Kit.Generate.Templates.Copy_Template_Packages
+           (Db, Ada.Directories.Current_Directory);
          Ada.Directories.Set_Directory (Current);
       end;
    end Execute;
